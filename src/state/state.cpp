@@ -20,45 +20,64 @@ int State::evaluate(){
         int piece_op = this->board.board[1-this->player][i][j];
         switch (piece) {
             case 1:
-              ans += 1;
+              piece = 1;
               break;
             case 2:
-              ans += 5;
+              piece = 5;
               break;
             case 3:
             case 4:
-              ans += 3;
+              piece = 3;
               break;
             case 5:
-              ans += 9;
+              piece = 9;
               break;
             case 6:
-              ans += 1000;
+              piece = 1000;
               break;
             default:
               piece = 0;
         }
         switch (piece_op) {
             case 1:
-              ans -= 1;
+              piece_op = 1;
               break;
             case 2:
-              ans -= 5;
+              piece_op = 5;
               break;
             case 3:
             case 4:
-              ans -= 3;
+              piece_op = 3;
               break;
             case 5:
-              ans -= 9;
+              piece_op = 9;
               break;
             case 6:
-              ans -= 1000;
+              piece_op = 1000;
               break;
             default:
               piece_op = 0;
         }
-        
+        if(this->player == 0){
+          /*if(piece != 1000){
+          ans += (piece*(20 + (7-1-i)))/10 - 2*j;
+          ans -= piece_op;
+          }
+          else{
+            ans += piece// + i + j;
+          }*/
+          ans +=piece*12;
+          ans -=piece_op*10;
+        }
+        else{
+          if(piece != 1000){
+          ans += (piece*(20+(1 + i)))/10 + 2*j;
+          ans -= piece_op;
+          }
+          else{
+            ans += piece - i - j;
+          }
+        }
       }
   }
   return ans;
